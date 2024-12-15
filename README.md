@@ -27,7 +27,6 @@
 > [!TIP]
 > Κανε pipe την έξοδο άλλων πραγμάτων με το σύμβολο | στο less (-R flag άμα κάνεις output χρώματα) για να την διαβάσεις.
 
-
 ## Good to haves
 
 #### [Yazi](https://github.com/sxyazi/yazi)
@@ -59,7 +58,7 @@
 > Better command history.
 
 #### [gdu](https://github.com/dundee/gdu)
-> [!TIP]
+ > [!TIP]
 > Δείχνει το μέγεθος των αρχείων με interactive τρόπο για να μπορείς να καθαρίσεις τον δίσκο.
 
 #### [Pass](https://www.youtube.com/watch?v=FhwsfH2TpFA)
@@ -70,6 +69,9 @@
 > [!TIP]
 > TUI (Terminal User Interface) για το git. Τέρμα πιο κάλο από να κάνεις rawdog το git.
 
+#### [choose](https://github.com/theryangeary/choose)
+> [!TIP]
+> Πολύ πιο εύκολη awk αν και δεν έχει το ίδιο τεράστιες δυνατότητες άλλα είναι μάλλον αρκετή για 99% των πραγμάτων που θέλεις να κάνεις.
 
 #### [thefuck](https://github.com/nvbn/thefuck)
 > [!TIP]
@@ -82,6 +84,8 @@
 
 # Βασικές εντολές
 - Ctrl+Shift+c κάνει copy Ctrl+Shift+v κάνει paste.
+
+- Ctrl+r για search histroy.
 
 - Ctrl+l για να κάνεις clear γρήγορα. Ctrl+c για να κλείσουμε ένα πρόγραμμα (αντίστοιχο του X στα προγράμματα με γραφικό περιβάλλον). Ctrl+z για να βάλουμε ένα πρόγραμμα στο background το οποίο μπορούμε να επαναφέρουμε στο foreground με `❯ fg`. 
 
@@ -125,7 +129,7 @@
 
 1. Μπορείς να βάλεις το `export MANPAGER='nvim +Man!'` στο .bashrc ή .zshrc ανάλογα το shell σου για να χρησιμοποιείς το neovim για pager της εντολής man αντί για το less.
 
-2. Βάλε `alias manpages='man -k . | fzf | awk '\''{print $1$2}'\'' | xargs man'` στο .bashrc ή .zshrc ανάλογα το shell σου για να ορίσεις το command `manpages` που ανοίγει ένα παράθυρο fzf με όλα τα man pages που έχεις στο pc και όποιο επιλέξεις το ανοίγει.
+2. Βάλε `alias manpages='man -k . | fzf | awk '\''{print $1$2}'\'' | xargs man'` στο .bashrc ή .zshrc ανάλογα το shell σου για να ορίσεις το command `manpages` που ανοίγει ένα παράθυρο fzf με όλα τα man pages που έχεις στο pc και όποιο επιλέξεις το ανοίγει. Με την choose το command γίνετε `alias manpages='man -k . | fzf | choose -o "" 0:1 | xargs man'`.
 
 3. Άμα κάνεις `❯ !!` στο τερματικό θα επαναλάβει την προηγουμένη εντολή. Μπορείς να κάνεις `❯ sudo !!` για να την κάνεις ως super user.
 
@@ -136,3 +140,9 @@
 6. Η bat έχει themes.
 
 7. Με την fzf το flag -e θα σου ψάξει το string που του γράφεις ενωμένο και όχι οπός θέλει. Άμα την χρησιμοποιήσεις χωρίς το flag για να ψάξεις κάτι θα δεις τι εννοώ.
+
+8. Αν θες να μάθεις το git μπορείς να δεις αυτό το [βίντεο](https://youtu.be/rH3zE7VlIMs?si=EFGaHxucHR5oSX4S). Μάλλον όχι όλο είναι περισσότερη πληροφορία από όσο χρειάζεσαι.
+
+9. Αν θες να μάθεις neovim άνοιξε το και γράψε σε normal mode `:Tutor` και έχει ένα πολύ κάλο οδηγό μέσα στο πρόγραμμα για να μπορείς να δοκιμάσεις τα πάντα άμεσα. Αν θες να το χρησιμοποιήσεις για κώδικα θα θέλεις μαλών αρκετά εργαλεία οπότε η μπορείς να χρησιμοποιήσεις ένα setup οπός [nvchad](https://nvchad.com/), [lunarvim](https://github.com/LunarVim/LunarVim) ή μπορείς να χρησιμοποιήσεις ένα plugin manager οπός [lazyvim](https://www.lazyvim.org/) κατευθείαν και να στήσεις το περιβάλλον ένα ένα plugin. Αν επιλέξεις το δεύτερο πάρε παραδείγματα από άλλους γιατί υπάρχουν υπερβολικά πολλά plugins και θέλουν settings όλα. Θα προσθέσω σε αυτό το repo το setup που χρησιμοποιώ τώρα για να έχεις ένα παράδειγμα και αν θες να το χρησιμοποιήσεις ως έχει πέτα το στο ~/.config.
+
+10. Αν θέλεις να χρησιμοποιήσεις zsh αντί για bash μην χρησιμοποιήσεις το ohmyzsh είναι τόσο bloated που αργεί το command line XD. Εγώ χρησιμοποιώ το [zap](https://github.com/zap-zsh/zap) γιατί είναι ότι πιο απλό και σε χρήση και σε μέγεθος.
