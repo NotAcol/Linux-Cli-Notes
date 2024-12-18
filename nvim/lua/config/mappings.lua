@@ -26,13 +26,26 @@ map("n", "<leader>x", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "Close Curren
 
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
+------------ git --------------------
+
+local neogit = require("neogit")
+map("n", "<leader>gs", neogit.open, { silent = true, noremap = true, desc = "git status" })
+map("n", "<leader>gc", "<cmd>Neogit commit<cr>", { silent = true, noremap = true, desc = "git commit" })
+map("n", "<leader>gp", "<cmd>Neogit pull<cr>", { silent = true, noremap = true, desc = "git pull" })
+map("n", "<leader>gP", "<cmd>Neogit push<cr>", { silent = true, noremap = true, desc = "git push" })
+map("n", "<leader>gb", "<cmd>Telescope git_branch<cr>", { silent = true, noremap = true, desc = "git branch" })
+map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { silent = true, noremap = true, desc = "git diff" })
+
 --------------- Compilation mode --------------------------------
 
 map("n", "<leader>co", "<CMD>Compile<CR>", { desc = "Compilation mode" })
 
------------------------------ yazi ---------------------
+----------------------------- file browser ---------------------
 
-map("n", "<C-n>", "<cmd>Yazi cwd<CR>", { desc = "Open yazi" })
+-- map("n", "<C-n>", "<cmd>Yazi cwd<CR>", { desc = "Open yazi" })
+map("n", "<C-n>", function()
+	require("oil").toggle_float()
+end, { desc = "Open file browser" })
 
 --------------- harpoon stuff ------------------------------------
 -- this is basically better marks
@@ -175,10 +188,10 @@ end
 
 map({ "n", "t" }, "<A-g>", "<cmd>lua _Lazygit_toggle()<cr>", { desc = "Toggle floating term with Lazygit" })
 
--- bottom
-local bottom = Terminal:new({ cmd = "btop", display_name = "Btop", direction = "float", hidden = true })
+-- sysmonitor
+local btop = Terminal:new({ cmd = "btop", display_name = "Btop", direction = "float", hidden = true })
 function _Btop_toggle()
-	bottom:toggle()
+	btop:toggle()
 end
 map({ "n", "t" }, "<A-b>", "<cmd>lua _Btop_toggle()<cr>", { desc = "Toggle floating term with system monitor" })
 --------------------------

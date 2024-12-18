@@ -8,7 +8,7 @@
 
 #### [bash](https://www.youtube.com/watch?v=IYZDIhfAUM0) και τα [scripts](https://www.youtube.com/watch?v=4ygaA_y1wvQ) της. 
 > [!NOTE]
->Ακόμα και αν δεν χρησιμοποιείς bash ως το shell σου οπός εγώ θα θέλεις μάλλον σίγα σίγα να την μάθεις για τα scripts της που δουλεύουν σε όλα τα συστήματα Unix (Mac & linux). Επίσης τα βασικά είναι σε όλα τα posix shells ίδια.
+>Ακόμα και αν δεν χρησιμοποιείς bash ως το shell σου όπως εγώ θα θέλεις μάλλον σίγα σίγα να την μάθεις για τα scripts της που δουλεύουν σε όλα τα συστήματα Unix (Mac & linux). Επίσης τα βασικά είναι σε όλα τα posix shells ίδια.
 
 | Βασική | Καλύτερη |
 | :---: | :---: |
@@ -95,11 +95,13 @@
 
 - Μπορούμε να κάνουμε πολλές εντολές την μια μετά την άλλη με τους χαρακτήρες && πχ `❯ touch ./new_file && nvim ./newfile` θα δημιουργήσει ένα αρχείο new_file και μετά θα το ανοίξει με το neovim.
 
+- Άμα κάνεις `❯ !!` στο τερματικό θα επαναλάβει την προηγουμένη εντολή. Μπορείς να κάνεις `❯ sudo !!` για να την κάνεις ως super user. Επίσης αν κάνεις `❯ !εντολη` θα επαναλάβει το τελευταίο command τύπου `εντολη`
+
 - Το σύμβολο . όταν μιλάμε για directory σημαίνει το pwd (directory που βρισκόμαστε τώρα) οπότε μπορείς να το χρησιμοποιήσεις για relative path πχ `❯ cd ./blah`  σε πάει στο directory blah που είναι κάτω από το pwd. Το σύμβολο .. είναι το από πάνω directory και άρα `❯ cd ../blah` σε πάει ένα directory πίσω και μετά στο directory blah.
 
 - Το σύμβολο . στην αρχή ενός αρχείου ή directory το κάνει κρυφό πχ .secret_file
 
-- Το σύμβολο ~ είναι συντομογραφία για το home directory του τωρινού user, οπότε `❯ cd ~/.config/` θα σε πάει στο /home/username/.config 
+- Το σύμβολο ~ είναι συντομογραφία για το home directory του τωρινού user, οπότε `❯ cd ~/.config/` θα σε πάει στο /home/username/.config μπορείς όμως να το χρησιμοποιήσεις για να αναφερθείς στο home ενός άλλου user πχ `cd ~user2` θα σε πάει στο home του user2.
 
 - Το `cd -` θα σε πάει στο προηγούμενο directory. Μπορείς να κάνεις το ίδιο πράγμα με περισσότερα από ένα directories με τις εντολές pushd popd που λειτουργούν ως stack. 
 ```bash
@@ -115,7 +117,7 @@
 ~/dotfiles
 ```
 
-- `❯ cp target destination` για copy. `❯ rm target` για delete(remove) `❯ mv target destination` για move, μπορείς να βάλεις το target της mv στο ίδιο directory ουσιαστικά κάνοντας rename το αρχείο.
+- `❯ cp target destination` για copy. `❯ rm target` για delete(remove). `❯ mv target destination` για move, μπορείς να βάλεις το target της mv στο ίδιο directory ουσιαστικά κάνοντας rename το αρχείο.
 
 - Όταν θέλεις να κάνεις copy, delete κλπ ένα directory πρέπει να βάλεις το flag -r για να το κάνεις recursively (να κάνει delete ή copy και ότι φάκελο η αρχείο είναι από κάτω).
 
@@ -129,9 +131,9 @@
 
 1. Μπορείς να βάλεις το `export MANPAGER='nvim +Man!'` στο .bashrc ή .zshrc ανάλογα το shell σου για να χρησιμοποιείς το neovim για pager της εντολής man αντί για το less.
 
-2. Βάλε `alias manpages='man -k . | fzf | awk '\''{print $1$2}'\'' | xargs man'` στο .bashrc ή .zshrc ανάλογα το shell σου για να ορίσεις το command `manpages` που ανοίγει ένα παράθυρο fzf με όλα τα man pages που έχεις στο pc και όποιο επιλέξεις το ανοίγει. Με την choose το command γίνετε `alias manpages='man -k . | fzf | choose -o "" 0:1 | xargs man'`.
+2. Βάλε `alias manpages='man -k . | fzf -e | awk '\''{print $1$2}'\'' | xargs man'` στο .bashrc ή .zshrc ανάλογα το shell σου για να ορίσεις το command `manpages` που ανοίγει ένα παράθυρο fzf με όλα τα man pages που έχεις στο pc και όποιο επιλέξεις το ανοίγει. Με την choose το command γίνετε `alias manpages='man -k . | fzf | choose -o "" 0:1 | xargs man'`.
 
-3. Άμα κάνεις `❯ !!` στο τερματικό θα επαναλάβει την προηγουμένη εντολή. Μπορείς να κάνεις `❯ sudo !!` για να την κάνεις ως super user.
+3. Καλά τερματικά που έχω δοκιμάσει είναι το [wezterm](https://wezfurlong.org/wezterm/index.html) γιατί έχει settings σε lua και δουλεύει σε windows και linux. Αυτό που χρησιμοποιώ είναι το [kitty](https://sw.kovidgoyal.net/kitty/) γιατί έχω βρει ότι είναι πιο γρήγορο και δουλεύει native σε wayland, επίσης έχει καλύτερες εικόνες. Σε λίγο θα βγει το [ghostty](https://github.com/ghostty-org) που μάλλον θα είναι επίσης πολύ κάλο.
 
 4. Με την eza μπορείς να δόσεις flag -T για tree view και με το -L *number* μπορείς να του πεις μέχρι τι βάθος να δείξει τους φακέλους. Με το flag -h προσθέτει τίτλους στην πρώτη γραμμή. Τα άλλα options όπως -al είναι σαν την ls.
 
@@ -139,10 +141,14 @@
 
 6. Η bat έχει themes.
 
-7. Με την fzf το flag -e θα σου ψάξει το string που του γράφεις ενωμένο και όχι οπός θέλει. Άμα την χρησιμοποιήσεις χωρίς το flag για να ψάξεις κάτι θα δεις τι εννοώ.
+7. Με την fzf το flag -e θα σου ψάξει το string που του γράφεις ενωμένο και όχι όπως θέλει. Άμα την χρησιμοποιήσεις χωρίς το flag για να ψάξεις κάτι θα δεις τι εννοώ.
 
-8. Αν θες να μάθεις το git μπορείς να δεις αυτό το [βίντεο](https://youtu.be/rH3zE7VlIMs?si=EFGaHxucHR5oSX4S). Μάλλον όχι όλο είναι περισσότερη πληροφορία από όσο χρειάζεσαι.
+8. Αν θες να μάθεις το git μπορείς να δεις αυτό το [βίντεο](https://youtu.be/rH3zE7VlIMs?si=EFGaHxucHR5oSX4S). Μάλλον όχι όλο είναι περισσότερη πληροφορία από όσο χρειάζεσαι. Αν θες να διαβάσεις καλύτερα δες [εδώ](https://www.atlassian.com/git/tutorials/setting-up-a-repository) τα getting started και collaborating workflows.
 
 9. Αν θες να μάθεις neovim άνοιξε το και γράψε σε normal mode `:Tutor` και έχει ένα πολύ κάλο οδηγό μέσα στο πρόγραμμα για να μπορείς να δοκιμάσεις τα πάντα άμεσα. Αν θες να το χρησιμοποιήσεις για κώδικα θα θέλεις μαλών αρκετά εργαλεία οπότε η μπορείς να χρησιμοποιήσεις ένα setup οπός [nvchad](https://nvchad.com/), [lunarvim](https://github.com/LunarVim/LunarVim) ή μπορείς να χρησιμοποιήσεις ένα plugin manager οπός [lazyvim](https://www.lazyvim.org/) κατευθείαν και να στήσεις το περιβάλλον ένα ένα plugin. Αν επιλέξεις το δεύτερο πάρε παραδείγματα από άλλους γιατί υπάρχουν υπερβολικά πολλά plugins και θέλουν settings όλα. Θα προσθέσω σε αυτό το repo το setup που χρησιμοποιώ τώρα για να έχεις ένα παράδειγμα και αν θες να το χρησιμοποιήσεις ως έχει πέτα το στο ~/.config.
 
-10. Αν θέλεις να χρησιμοποιήσεις zsh αντί για bash μην χρησιμοποιήσεις το ohmyzsh είναι τόσο bloated που αργεί το command line XD. Εγώ χρησιμοποιώ το [zap](https://github.com/zap-zsh/zap) γιατί είναι ότι πιο απλό και σε χρήση και σε μέγεθος.
+10. Αν θέλεις να χρησιμοποιήσεις zsh αντί για bash μην χρησιμοποιήσεις το ohmyzsh είναι τόσο bloated που αργεί το command line XD. Εγώ χρησιμοποιώ το [zap](https://github.com/zap-zsh/zap) γιατί είναι ότι πιο απλό και σε χρήση και σε μέγεθος. Έχω βάλει τα δυο αρχεία που είναι το config μου για την zap, μπορείς να τα χρησιμοποιήσεις για έμπνευση.
+
+11. Το tmux έχει ένα plugin manager που λέγετε [tpm](https://github.com/tmux-plugins/tpm) έχω επίσης προσθέσει το config μου για το tmux και μπορείς να πάρεις έμπνευση από εκεί.
+
+12. Η χρήση της curl είναι `❯ curl -o <filename> <url>` άλλα επειδή το url μπορεί να είναι και τοπικό μπορούμε να την χρησιμοποιήσουμε σαν cp με progress counter `❯ curl -# -o /path/to/destination file:///path/to/source/file ` -# για minimal progressbar. 
